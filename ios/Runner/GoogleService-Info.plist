@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>66707634234-vbh95rfah05d4gpc4grst6i9o8htl3mt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.66707634234-vbh95rfah05d4gpc4grst6i9o8htl3mt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqv8Q8T5WQGRuFyjhoebV_ksf7N401CAY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>66707634234</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.company.projectToury</string>
+	<key>PROJECT_ID</key>
+	<string>toury-1727-tn</string>
+	<key>STORAGE_BUCKET</key>
+	<string>toury-1727-tn.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:66707634234:ios:98dce11e83550e4cf39d03</string>
+</dict>
+</plist>

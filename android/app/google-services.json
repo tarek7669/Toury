@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "66707634234",
+    "project_id": "toury-1727-tn",
+    "storage_bucket": "toury-1727-tn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66707634234:android:9ff87e0c325ae695f39d03",
+        "android_client_info": {
+          "package_name": "io.company.project_toury"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66707634234-iavkr6lqqjpff2102auk7j7oi7rand6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAObOc9bFotwVvtHpE3lqig--xnuSPAgSc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66707634234-iavkr6lqqjpff2102auk7j7oi7rand6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
