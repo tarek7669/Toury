@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 import 'package:flutter/material.dart';
+import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Pages/Login/login.dart';
 import 'CardItems.dart';
 
@@ -91,11 +92,12 @@ class Body extends StatelessWidget {
         pageList: pageList,
         onDoneButtonPressed: () =>
         first_time ?
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
+        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBar()))
         : Navigator.pop(context),
         onSkipButtonPressed: () =>
         first_time ?
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBar()))
         : Navigator.pop(context),
       ),
     );

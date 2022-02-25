@@ -617,7 +617,10 @@ class _PaidToursListState extends State<PaidToursList> with AutomaticKeepAliveCl
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return RefreshIndicator(
+    return FirebaseAuth.instance.currentUser == null
+        ? Center(child: Text("SIGN IN TO CONTINUE"))
+        :
+    RefreshIndicator(
       child: Scaffold(
        //  appBar: AppBar(
        //    elevation: 10,

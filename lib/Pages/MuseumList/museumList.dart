@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Models/user_model.dart';
+import 'package:project_toury/Pages/Carousel_Start/Carousel.dart';
 import 'package:project_toury/Pages/MuseumList/components/body.dart';
 import 'package:project_toury/Pages/Profile/components/body.dart';
 import 'package:project_toury/Services/InternetConnection.dart';
@@ -83,81 +84,155 @@ class _MuseumListState extends State<MuseumList>
     debugPrint('***** the length of QuerySnapshot Docs is ${querySnapshot.docs
         .length} (museumList.dart -> getDocs())*****');
 
-    //FETCH IZO
-    final firebaseUser = await FirebaseAuth.instance.currentUser;
-    if (firebaseUser != null) {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(firebaseUser.uid)
-          .get()
-          .then((ds) {
-        finalIso = ds['ISOCode'];
+    //get NAMES, LOCATIONS, THUMBNAILS, DESCRIPTION ROUTES, LOCATION ROUTES
+    for (int i = 0; i < querySnapshot.docs.length; i++) {
+      var a = querySnapshot.docs[i];
+      // documents.add(a.get('Email'));
 
-        //get NAMES, LOCATIONS, THUMBNAILS, DESCRIPTION ROUTES, LOCATION ROUTES
-        for (int i = 0; i < querySnapshot.docs.length; i++) {
-          var a = querySnapshot.docs[i];
-          // documents.add(a.get('Email'));
-
-          if (finalIso == "EG") {
-            // documents.add(a.get('Email'));
-            setState(() {
-              ids.add(a.get('ID'));
-              names.add(a.get('Name'));
-              locations.add(a.get('Location'));
-              thumbnails.add(a.get('Thumbnail'));
-              // descriptionRoutes.add(a.get('DescriptionRoute'));
-              locationRoutes.add(a.get('LocationRoute'));
-              finalPrices.add(a.get('EgyptianPrice'));
-              finalCurrency = "EGP";
-            });
-          } else {
-            setState(() {
-              ids.add(a.get('ID'));
-              names.add(a.get('Name'));
-              locations.add(a.get('Location'));
-              thumbnails.add(a.get('Thumbnail'));
-              // descriptionRoutes.add(a.get('DescriptionRoute'));
-              locationRoutes.add(a.get('LocationRoute'));
-              finalPrices.add(a.get('InternationalPrice'));
-              finalCurrency = "USD";
-            });
-          }
-
-          // setState(() {
-          //   ids.add(a.get('ID'));
-          //   names.add(a.get('Name'));
-          //   locations.add(a.get('Location'));
-          //   thumbnails.add(a.get('Thumbnail'));
-          //   // descriptionRoutes.add(a.get('DescriptionRoute'));
-          //   locationRoutes.add(a.get('LocationRoute'));
-          //   internationalPrices.add(a.get('InternationalPrice'));
-          //   egyptianPrices.add(a.get('EgyptianPrice'));
-          // });
-        }
-
-        debugPrint("***** TOURS ID LENGTH IS EQUAL TO ${ids
-            .length} (museumList.dart -> getDocs())*****");
-
-        for (int i = 0; i < querySnapshot.docs.length; i++) {
-          print(ids[i]);
-          print(names[i]);
-          print(locations[i]);
-          print(thumbnails[i]);
-          // print(descriptionRoutes[i]);
-          print(locationRoutes[i]);
-          // print(internationalPrices[i]);
-          // print(egyptianPrices[i]);
-          print(finalPrices[i]);
-          print(finalCurrency);
-          print("***** END TOUR ${i + 1} *****");
-        }
-
-        setState(() {
-          loading_data = false;
-        });
-        return ids;
+      setState(() {
+        ids.add(a.get('ID'));
+        names.add(a.get('Name'));
+        locations.add(a.get('Location'));
+        thumbnails.add(a.get('Thumbnail'));
+        // descriptionRoutes.add(a.get('DescriptionRoute'));
+        locationRoutes.add(a.get('LocationRoute'));
+        finalPrices.add(a.get('EgyptianPrice'));
+        finalCurrency = "EGP";
       });
+
+      // if (finalIso == "EG") {
+      //   // documents.add(a.get('Email'));
+      //   setState(() {
+      //     ids.add(a.get('ID'));
+      //     names.add(a.get('Name'));
+      //     locations.add(a.get('Location'));
+      //     thumbnails.add(a.get('Thumbnail'));
+      //     // descriptionRoutes.add(a.get('DescriptionRoute'));
+      //     locationRoutes.add(a.get('LocationRoute'));
+      //     finalPrices.add(a.get('EgyptianPrice'));
+      //     finalCurrency = "EGP";
+      //   });
+      // } else {
+      //   setState(() {
+      //     ids.add(a.get('ID'));
+      //     names.add(a.get('Name'));
+      //     locations.add(a.get('Location'));
+      //     thumbnails.add(a.get('Thumbnail'));
+      //     // descriptionRoutes.add(a.get('DescriptionRoute'));
+      //     locationRoutes.add(a.get('LocationRoute'));
+      //     finalPrices.add(a.get('InternationalPrice'));
+      //     finalCurrency = "USD";
+      //   });
+      // }
+
+      // setState(() {
+      //   ids.add(a.get('ID'));
+      //   names.add(a.get('Name'));
+      //   locations.add(a.get('Location'));
+      //   thumbnails.add(a.get('Thumbnail'));
+      //   // descriptionRoutes.add(a.get('DescriptionRoute'));
+      //   locationRoutes.add(a.get('LocationRoute'));
+      //   internationalPrices.add(a.get('InternationalPrice'));
+      //   egyptianPrices.add(a.get('EgyptianPrice'));
+      // });
     }
+    debugPrint("\n\n***** TOURS ID LENGTH IS EQUAL TO ${ids
+        .length} (museumList.dart -> getDocs())*****\n\n");
+    for (int i = 0; i < querySnapshot.docs.length; i++) {
+      print(ids[i]);
+      print(names[i]);
+      print(locations[i]);
+      print(thumbnails[i]);
+      // print(descriptionRoutes[i]);
+      print(locationRoutes[i]);
+      // print(internationalPrices[i]);
+      // print(egyptianPrices[i]);
+      print(finalPrices[i]);
+      print(finalCurrency);
+      print("***** END TOUR ${i + 1} *****");
+    }
+
+    setState(() {
+      loading_data = false;
+    });
+    return ids;
+
+
+    //FETCH IZO
+    // final firebaseUser = await FirebaseAuth.instance.currentUser;
+    // if (firebaseUser != null) {
+    //   await FirebaseFirestore.instance
+    //       .collection('users')
+    //       .doc(firebaseUser.uid)
+    //       .get()
+    //       .then((ds) {
+    //     finalIso = ds['ISOCode'];
+    //
+    //     //get NAMES, LOCATIONS, THUMBNAILS, DESCRIPTION ROUTES, LOCATION ROUTES
+    //     for (int i = 0; i < querySnapshot.docs.length; i++) {
+    //       var a = querySnapshot.docs[i];
+    //       // documents.add(a.get('Email'));
+    //
+    //       if (finalIso == "EG") {
+    //         // documents.add(a.get('Email'));
+    //         setState(() {
+    //           ids.add(a.get('ID'));
+    //           names.add(a.get('Name'));
+    //           locations.add(a.get('Location'));
+    //           thumbnails.add(a.get('Thumbnail'));
+    //           // descriptionRoutes.add(a.get('DescriptionRoute'));
+    //           locationRoutes.add(a.get('LocationRoute'));
+    //           finalPrices.add(a.get('EgyptianPrice'));
+    //           finalCurrency = "EGP";
+    //         });
+    //       } else {
+    //         setState(() {
+    //           ids.add(a.get('ID'));
+    //           names.add(a.get('Name'));
+    //           locations.add(a.get('Location'));
+    //           thumbnails.add(a.get('Thumbnail'));
+    //           // descriptionRoutes.add(a.get('DescriptionRoute'));
+    //           locationRoutes.add(a.get('LocationRoute'));
+    //           finalPrices.add(a.get('InternationalPrice'));
+    //           finalCurrency = "USD";
+    //         });
+    //       }
+    //
+    //       // setState(() {
+    //       //   ids.add(a.get('ID'));
+    //       //   names.add(a.get('Name'));
+    //       //   locations.add(a.get('Location'));
+    //       //   thumbnails.add(a.get('Thumbnail'));
+    //       //   // descriptionRoutes.add(a.get('DescriptionRoute'));
+    //       //   locationRoutes.add(a.get('LocationRoute'));
+    //       //   internationalPrices.add(a.get('InternationalPrice'));
+    //       //   egyptianPrices.add(a.get('EgyptianPrice'));
+    //       // });
+    //     }
+    //
+    //     debugPrint("***** TOURS ID LENGTH IS EQUAL TO ${ids
+    //         .length} (museumList.dart -> getDocs())*****");
+    //
+    //     for (int i = 0; i < querySnapshot.docs.length; i++) {
+    //       print(ids[i]);
+    //       print(names[i]);
+    //       print(locations[i]);
+    //       print(thumbnails[i]);
+    //       // print(descriptionRoutes[i]);
+    //       print(locationRoutes[i]);
+    //       // print(internationalPrices[i]);
+    //       // print(egyptianPrices[i]);
+    //       print(finalPrices[i]);
+    //       print(finalCurrency);
+    //       print("***** END TOUR ${i + 1} *****");
+    //     }
+    //
+    //     setState(() {
+    //       loading_data = false;
+    //     });
+    //     return ids;
+    //   });
+    // }
   }
 
   Future<void> refreshList() async{
