@@ -78,11 +78,15 @@ class _MuseumListState extends State<MuseumList>
     setState(() {
       loading_data = true;
     });
+
+    debugPrint('\n\n***** before the query snapshot *****\n\n');
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance.collection(
         "tours").get();
 
-    debugPrint('***** the length of QuerySnapshot Docs is ${querySnapshot.docs
-        .length} (museumList.dart -> getDocs())*****');
+    debugPrint('\n\n***** the length of QuerySnapshot Docs is ${querySnapshot.docs
+        .length} (museumList.dart -> getDocs())*****\n\n');
+
+    debugPrint('\n\n***** after the query snapshot *****\n\n');
 
     //get NAMES, LOCATIONS, THUMBNAILS, DESCRIPTION ROUTES, LOCATION ROUTES
     for (int i = 0; i < querySnapshot.docs.length; i++) {

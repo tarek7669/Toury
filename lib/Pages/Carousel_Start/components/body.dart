@@ -92,12 +92,11 @@ class Body extends StatelessWidget {
         pageList: pageList,
         onDoneButtonPressed: () =>
         first_time ?
-        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBar()))
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
         : Navigator.pop(context),
         onSkipButtonPressed: () =>
         first_time ?
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBar()))
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()))
         : Navigator.pop(context),
       ),
     );
