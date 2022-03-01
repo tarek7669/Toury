@@ -1,21 +1,22 @@
 class UserModel {
-  String uid;
+  String? uid;
   String? username;
   String? phoneNumber;
 
-  UserModel(
-      this.uid,
-      this.username,
-      this.phoneNumber,
-      );
-
-  getUID() => uid;
-  getUsername() => username;
-  getPhone() => phoneNumber;
+  // UserModel(
+  //     this.uid,
+  //     this.username,
+  //     this.phoneNumber,
+  //     );
+  // UserModel();
 
   setUID(uid) => this.uid;
   setUsername(username) => this.username;
   setPhone(phoneNumber) => this.phoneNumber;
+
+  getUID() => uid;
+  getUsername() => username;
+  getPhone() => phoneNumber;
 }
 
 

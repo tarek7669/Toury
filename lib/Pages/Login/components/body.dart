@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pin_entry_text_field/pin_entry_text_field.dart';
+import 'package:project_toury/Components/UserSharedPreferences.dart';
 import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Services/Navigations.dart';
 import 'package:project_toury/Services/auth_services.dart';
@@ -11,9 +12,9 @@ import 'package:project_toury/Services/database.dart';
 import 'package:project_toury/constants.dart';
 import 'package:project_toury/Pages/Login/components/background.dart';
 import 'package:provider/provider.dart';
-import 'package:project_toury/Models/user_model.dart' as user;
+import 'package:project_toury/Models/user_model.dart';
 
-class Body extends StatefulWidget {
+class Body extends StatefulWidget{
   const Body({Key? key}) : super(key: key);
 
   @override
@@ -140,8 +141,6 @@ class OTPScreen extends StatefulWidget {
   final String codeCountry;
   OTPScreen(this.username, this.phone, this.isoCode, this.codeCountry);
 
-  user.UserModel userInfo = new user.UserModel("ID", "Username", "Phone Number");
-
   @override
   _OTPScreenState createState() => _OTPScreenState();
 }
@@ -149,6 +148,7 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> with ChangeNotifier{
   String _verificationCode = '';
   FirebaseAuth _auth = FirebaseAuth.instance;
+  UserModel userInfo = new UserModel();
 
   @override
   void initState() {
@@ -166,6 +166,7 @@ class _OTPScreenState extends State<OTPScreen> with ChangeNotifier{
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+
 
     return Scaffold(
       body: Background(
@@ -190,6 +191,16 @@ class _OTPScreenState extends State<OTPScreen> with ChangeNotifier{
                   await _auth.signInWithCredential(phoneAuthCredential);
                   await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                       .updateUserData(widget.username, widget.phone, widget.isoCode, widget.codeCountry);
+
+                  //SHARED PREFERENCES
+                  await UserSharedPreferences.setUsername(widget.username);
+                  await UserSharedPreferences.setPhoneNumber(widget.phone);
+
+                  //USER MODEL
+                  userInfo.setUID(FirebaseAuth.instance.currentUser!.uid);
+                  userInfo.setUsername(widget.username);
+                  userInfo.setPhone(widget.phone);
+
                   // await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                   //     .updateUserData(widget.username, widget.phone, widget.isoCode, widget.codeCountry).then((value) async{
                   //   await _fetchPaidTours();
@@ -271,9 +282,20 @@ class _OTPScreenState extends State<OTPScreen> with ChangeNotifier{
               // });
 
               notifyListeners();
+
+              //SHARED PREFERENCES
+              await UserSharedPreferences.setUsername(widget.username);
+              await UserSharedPreferences.setPhoneNumber(widget.phone);
+
+              //USER MODEL
+              userInfo.setUID(FirebaseAuth.instance.currentUser!.uid);
+              userInfo.setUsername(widget.username);
+              userInfo.setPhone(widget.phone);
+
               changeScreenAndRemove(context, NavigationBar());
               print(FirebaseAuth.instance.currentUser!.uid);
             }
+
           });
         },
         verificationFailed: (FirebaseAuthException e) {

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_toury/Components/SpinKit.dart';
 import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Pages/MuseumList/museumList.dart';
 import '../../constants.dart';
@@ -683,10 +684,7 @@ class _PaidToursListState extends State<PaidToursList> with AutomaticKeepAliveCl
                         (_, int index) {
                       return loading_data ? Padding(
                         padding: EdgeInsets.only(top: size.height * 0.35),
-                        child: SpinKitFadingCube(
-                        color: kPrimaryColor,
-                        size: 50.0,
-                      ))
+                        child: DoubleBounce(),)
                       // : isConnected ?
                           : Container(
                           child: PaidToursBody(ids: ids, names: names, locations: locations, thumbnails: thumbnails,

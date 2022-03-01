@@ -18,11 +18,11 @@ class AuthService with ChangeNotifier{
     if (user == null) {
       return null;
     }
-    UserModel(user.uid, user.displayName, user.phoneNumber);
+    UserModel().setUID(user.uid);
+    UserModel().setUsername(user.displayName);
+    UserModel().setPhone(user.phoneNumber);
 
-
-
-    return UserModel(user.uid, user.displayName, user.phoneNumber);
+    return UserModel();
   }
 
 

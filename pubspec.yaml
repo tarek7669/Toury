@@ -32,24 +32,25 @@ dependencies:
 
   provider: ^5.0.0
   path_provider: ^2.0.2
-  dio:
-  image_gallery_saver:
-  permission_handler: ^6.0.1
+#  dio:
+#  image_gallery_saver:
+#  permission_handler: ^6.0.1
 #  flutter_downloader: ^1.7.1
 
   url_launcher: ^6.0.0
   share: ^2.0.4
 
-  shared_preferences: ^2.0.8
+  shared_preferences: ^2.0.13
 
   fancy_on_boarding: ^1.7.0
   flutter_spinkit: ^5.1.0
+  animations: ^2.0.2
 
-  carousel_pro: ^1.0.0
+#  carousel_pro: ^1.0.0
   carousel_slider: ^4.0.0
   banner_carousel: ^1.2.1
   finite_coverflow: ^1.0.0
-  dot_pagination_swiper: ^0.1.1
+#  dot_pagination_swiper: ^0.1.1
 
 #  flutter_neumorphic: ^3.1.0
   assets_audio_player: ^3.0.3+6
@@ -106,7 +107,7 @@ flutter:
 #   - assets/icons/
    - assets/Logo/
 #   - assets/sound/
-   - assets/DescriptionText/Mohamed_Ali/English/
+#   - assets/DescriptionText/Mohamed_Ali/English/
    - assets/icons/
    - assets/Test/
 

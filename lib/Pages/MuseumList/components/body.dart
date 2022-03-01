@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'Home/museumCard.dart';
 import '../../MuseumDetail/museumDetail.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:animations/animations.dart';
 
 class Body extends StatelessWidget {
   List<String> ids;
@@ -210,6 +211,50 @@ class homeList extends StatelessWidget {
                       finalPriceList[index], finalCurrency, context),
                 )
             );
+            // return OpenContainer(
+            //   transitionDuration: const Duration(milliseconds: 700),
+            //   transitionType: ContainerTransitionType.fadeThrough,
+            //   closedBuilder: (context, VoidCallback openContainer) {
+            //     return GestureDetector(
+            //       child: MuseumCard(
+            //         isConnected: true,
+            //         testThumbnails: File(""),
+            //         Id: idList[index],
+            //         Name: nameList[index],
+            //         Thumbnail: thumbnailList[index],
+            //         subtitle: locationList[index],
+            //         locationRoute: locationRouteList[index],
+            //         // internationalPrice: internationalPriceList[index],
+            //         // egyptianPrice: egyptianPriceList[index],
+            //         finalPrice: finalPriceList[index],
+            //         finalCurrency: finalCurrency,
+            //       ),
+            //       onTap: openContainer,
+            //     );
+            //   },
+            //   openBuilder: (BuildContext _, VoidCallback) {
+            //     return initialSetup(idHolder: idList[index], nameHolder : nameList[index], locationHolder: locationList[index],
+            //       thumbnailHolder: thumbnailList[index], descriptionRouteHolder: descriptionRouteList,
+            //       locationRouteHolder: locationRouteList[index], finalPriceHolder: finalPriceList, finalCurrency: finalCurrency,
+            //       descriptionSlideshowHolder: descriptionSlideshowList, voiceOversHolder: voiceOversList,
+            //       voiceOverTitlesHolder: voiceOverTitlesList, voiceOverSlideshowHolder: voiceOverSlideshowList, scriptsHolder: scriptsList,
+            //       languagesHolder: languagesList,
+            //       defaultLanguage: "English", defaultDescription: "Select A Language Please", selectedLanguage: 0,
+            //     );
+            //
+            //     // Navigator.push(context,
+            //     //     PageTransition(type: PageTransitionType.bottomToTop,
+            //     //         child: initialSetup(idHolder: idList[index], nameHolder : nameList[index], locationHolder: locationList[index],
+            //     //           thumbnailHolder: thumbnailList[index], descriptionRouteHolder: descriptionRouteList,
+            //     //           locationRouteHolder: locationRouteList[index], finalPriceHolder: finalPriceList, finalCurrency: finalCurrency,
+            //     //           descriptionSlideshowHolder: descriptionSlideshowList, voiceOversHolder: voiceOversList,
+            //     //           voiceOverTitlesHolder: voiceOverTitlesList, voiceOverSlideshowHolder: voiceOverSlideshowList, scriptsHolder: scriptsList,
+            //     //           languagesHolder: languagesList,
+            //     //           defaultLanguage: "English", defaultDescription: "Select A Language Please", selectedLanguage: 0,
+            //     //         )
+            //     //     ));
+            //   },
+            // );
           }
       );
   }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:project_toury/Components/SpinKit.dart';
 import '../../constants.dart';
 import 'museumDetail.dart';
 
@@ -221,20 +222,12 @@ class _initialSetupState extends State<initialSetup> {
 
     }
 
-    const spinkit = SpinKitRotatingCircle(
-      color: Colors.white,
-      size: 50.0,
-    );
-
     return Scaffold(
       body: FutureBuilder(
         future: _fetchData(),
         builder: (context, snapshot) {
           if(snapshot.connectionState != ConnectionState.done)
-            return Center(child: SpinKitFadingCube(
-              color: kPrimaryColor,
-              size: 50.0,
-            ));
+            return Center(child: DoubleBounce());
               return museumDetail(idHolder: idHolder, nameHolder : nameHolder, locationHolder: locationHolder,
                 thumbnailHolder: thumbnailHolder, descriptionRouteHolder: descriptionRouteHolder, locationRouteHolder: locationRouteHolder,
                 finalPriceHolder: finalPriceHolder, finalCurrency: finalCurrency, descriptionSlideshowHolder: descriptionSlideshowHolder,

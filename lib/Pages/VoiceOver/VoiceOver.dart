@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:project_toury/Player/PositionSeekWidget.dart';
 import '../../constants.dart';
 import 'package:finite_coverflow/finite_coverflow.dart';
-import 'package:dot_pagination_swiper/dot_pagination_swiper.dart';
 
 class VoiceOver extends StatefulWidget {
   final String nameHolder;

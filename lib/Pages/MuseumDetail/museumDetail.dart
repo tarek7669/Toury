@@ -15,9 +15,9 @@ import 'package:project_toury/Pages/VoiceOver/VoiceOver.dart';
 import 'package:project_toury/Pages/testPayment/testPayments.dart';
 import '../../constants.dart';
 import 'initialSetup.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:dio/dio.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'package:permission_handler/permission_handler.dart';
+// import 'package:dio/dio.dart';
+// import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:banner_carousel/banner_carousel.dart';
 
 class museumDetail extends StatefulWidget {
@@ -263,97 +263,97 @@ class _museumDetailState extends State<museumDetail>
     _fetchLiked();
   }
 
-  double progress = 0.0;
-  final Dio dio = Dio();
-
-  Future<bool>saveFile(String url, String sub_folder, String fileName) async{
-    Directory directory;
-    try{
-      if(Platform.isAndroid) {
-        if(await _requestPermission(Permission.storage)) {
-          directory = (await getExternalStorageDirectory())!;
-          print(directory.path);
-          String newPath = "";
-          List<String> folders = directory.path.split("/");
-          for(int i = 1; i < folders.length; i++){
-            String folder = folders[i];
-            if(folder != "Android") {
-              newPath += "/" + folder;
-            } else {
-              break;
-            }
-          }
-          newPath = newPath+ "/Toury App/$idHolder";
-          directory = Directory(newPath);
-        } else {
-          return false;
-        }
-      } else {
-        if(await _requestPermission(Permission.photos)){
-          directory = await getTemporaryDirectory();
-        } else {
-          return false;
-        }
-      }
-      if(!await directory.exists()){
-        await directory.create(recursive: true);
-      }
-      if(await directory.exists()){
-        File savedFile = File(directory.path+ "/$sub_folder/$fileName");
-
-        debugPrint("Your Saved File Path Is:  " + savedFile.path);
-        await dio.download(url, savedFile.path,
-            onReceiveProgress: (downloaded, totalSize) {
-          setState(() {
-            progress = downloaded/totalSize;
-          });
-        });
-        if(Platform.isIOS){
-          ImageGallerySaver.saveFile(savedFile.path, isReturnPathOfIOS: true);
-        }
-        return true;
-      }
-    }catch(e){
-      debugPrint("Error in (museumDetail -> saveFile(): $e");
-    }
-    return false;
-  }
-
-  Future<bool> _requestPermission(Permission permission) async{
-    if(await permission.isGranted){
-      return true;
-    }
-    else{
-      var result = await permission.request();
-      if(result == PermissionStatus.granted){
-        return true;
-      } else{
-        return false;
-      }
-    }
-  }
-
-  downloadFile(String url, String sub_folder, String fileName) async {
-    setState(() {
-      loading = true;
-      progress = 0;
-    });
-
-    bool downloaded = await saveFile(
-      //   "https://firebasestorage.googleapis.com/v0/b/toury-1727-tn.appspot.com/o/VoiceOver%2FAswan%2FArabic%"
-      //       "2FJalandhar.mp3?alt=media&token=a0adeaa5-c886-4841-b21f-a01f3692591b",
-      // "Arabic Toury Music.mp3"
-      url, sub_folder, fileName
-    );
-    if(downloaded)
-      debugPrint("File Downloaded");
-    else
-      debugPrint("File Is Not Downloaded");
-
-    setState((){
-      loading = false;
-    });
-  }
+  // double progress = 0.0;
+  // final Dio dio = Dio();
+  //
+  // Future<bool>saveFile(String url, String sub_folder, String fileName) async{
+  //   Directory directory;
+  //   try{
+  //     if(Platform.isAndroid) {
+  //       if(await _requestPermission(Permission.storage)) {
+  //         directory = (await getExternalStorageDirectory())!;
+  //         print(directory.path);
+  //         String newPath = "";
+  //         List<String> folders = directory.path.split("/");
+  //         for(int i = 1; i < folders.length; i++){
+  //           String folder = folders[i];
+  //           if(folder != "Android") {
+  //             newPath += "/" + folder;
+  //           } else {
+  //             break;
+  //           }
+  //         }
+  //         newPath = newPath+ "/Toury App/$idHolder";
+  //         directory = Directory(newPath);
+  //       } else {
+  //         return false;
+  //       }
+  //     } else {
+  //       if(await _requestPermission(Permission.photos)){
+  //         directory = await getTemporaryDirectory();
+  //       } else {
+  //         return false;
+  //       }
+  //     }
+  //     if(!await directory.exists()){
+  //       await directory.create(recursive: true);
+  //     }
+  //     if(await directory.exists()){
+  //       File savedFile = File(directory.path+ "/$sub_folder/$fileName");
+  //
+  //       debugPrint("Your Saved File Path Is:  " + savedFile.path);
+  //       await dio.download(url, savedFile.path,
+  //           onReceiveProgress: (downloaded, totalSize) {
+  //         setState(() {
+  //           progress = downloaded/totalSize;
+  //         });
+  //       });
+  //       if(Platform.isIOS){
+  //         ImageGallerySaver.saveFile(savedFile.path, isReturnPathOfIOS: true);
+  //       }
+  //       return true;
+  //     }
+  //   }catch(e){
+  //     debugPrint("Error in (museumDetail -> saveFile(): $e");
+  //   }
+  //   return false;
+  // }
+  //
+  // Future<bool> _requestPermission(Permission permission) async{
+  //   if(await permission.isGranted){
+  //     return true;
+  //   }
+  //   else{
+  //     var result = await permission.request();
+  //     if(result == PermissionStatus.granted){
+  //       return true;
+  //     } else{
+  //       return false;
+  //     }
+  //   }
+  // }
+  //
+  // downloadFile(String url, String sub_folder, String fileName) async {
+  //   setState(() {
+  //     loading = true;
+  //     progress = 0;
+  //   });
+  //
+  //   bool downloaded = await saveFile(
+  //     //   "https://firebasestorage.googleapis.com/v0/b/toury-1727-tn.appspot.com/o/VoiceOver%2FAswan%2FArabic%"
+  //     //       "2FJalandhar.mp3?alt=media&token=a0adeaa5-c886-4841-b21f-a01f3692591b",
+  //     // "Arabic Toury Music.mp3"
+  //     url, sub_folder, fileName
+  //   );
+  //   if(downloaded)
+  //     debugPrint("File Downloaded");
+  //   else
+  //     debugPrint("File Is Not Downloaded");
+  //
+  //   setState((){
+  //     loading = false;
+  //   });
+  // }
 
   manageLikeButton(BuildContext context) async{
     setState(() {
@@ -691,7 +691,7 @@ class _museumDetailState extends State<museumDetail>
                                             defaultLanguage = value!;
                                             print(defaultLanguage);
                                             selectedLanguage = languagesHolder.indexOf(value);
-                                            defaultDescription = descriptionRouteHolder[selectedLanguage] * 4;
+                                            defaultDescription = descriptionRouteHolder[selectedLanguage];
                                           });
                                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => initialSetup(
                                               idHolder: idHolder, nameHolder : nameHolder, locationHolder: locationHolder,

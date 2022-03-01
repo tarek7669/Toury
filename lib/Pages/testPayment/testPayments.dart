@@ -125,12 +125,11 @@ class _testPaymentsState extends State<testPayments> {
         shippingDetails: shippingDetails,
         alternativePaymentMethods: apms);
 
-    // var theme = IOSThemeConfigurations();
     var theme = IOSThemeConfigurations();
-    theme.backgroundColor = "FFF"; // Color hex value
-    theme.buttonColor = "03989E";
-    theme.secondaryFontColor = "03989E";
-    theme.secondaryColor = "03989E";
+    theme.backgroundColor = "0xFFF"; // Color hex value
+    theme.buttonColor = "0x03989E";
+    theme.secondaryFontColor = "0x03989E";
+    theme.secondaryColor = "0x03989E";
 
     theme.logoImage = "assets/Logo/toury-cyan.jpeg";
 
@@ -312,12 +311,17 @@ class _testPaymentsState extends State<testPayments> {
   //Apple pay Button
   Widget applePayButton() {
     if (Platform.isIOS) {
-      return TextButton(
+      return FlatButton(
         onPressed: () {
           applePayPressed();
         },
-        child: Text('Pay with Apple Pay',
-            style: TextStyle(fontSize: 23, color: kSecondaryColor)
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Pay with Apple Pay',
+                style: TextStyle(fontSize: 23, color: kSecondaryColor)
+            ),
+          ],
         ),
       );
     }
@@ -327,12 +331,17 @@ class _testPaymentsState extends State<testPayments> {
   //Samsung Pay Button
   Widget samsungPayButton() {
     if (Platform.isAndroid) {
-      return TextButton(
+      return FlatButton(
         onPressed: () {
           samsungPayPressed();
         },
-        child: Text('Pay with Samsung Pay',
-            style: TextStyle(fontSize: 23, color: kSecondaryColor)
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('Pay with Samsung Pay',
+                style: TextStyle(fontSize: 23, color: kSecondaryColor)
+            ),
+          ],
         ),
       );
     }
@@ -342,12 +351,13 @@ class _testPaymentsState extends State<testPayments> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          elevation: 5,
-          backgroundColor: Colors.white,
+          elevation: 0,
+          backgroundColor: Theme.of(context).canvasColor,
           title: Text('Pick One To Proceed',
               style: TextStyle(
             color: kPrimaryColor,
@@ -356,50 +366,64 @@ class _testPaymentsState extends State<testPayments> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              // Text('Pick One To Proceed'),
+              SizedBox(height: 16),
+              FlatButton(
+                minWidth: size.width,
+                onPressed: () {
+                  payPressed();
+                },
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    // Text('Pick One To Proceed'),
-                    SizedBox(height: 16),
-                    TextButton(
-                      onPressed: () {
-                        payPressed();
-                      },
-                      child: Text('Pay with Card',
-                          style: TextStyle(fontSize: 23, color: kSecondaryColor)
-                      ),
+                  children: [
+                    Text('Pay with Card',
+                        style: TextStyle(fontSize: 23, color: kSecondaryColor)
                     ),
-                    SizedBox(height: 16),
-                    applePayButton(),
-                    samsungPayButton(),
-                    SizedBox(height: 16),
-                    TextButton(
-                      onPressed: () {
-                        apmsPayPressed();
-                      },
-                      child: Text('Pay with Alternative payment methods',
-                          style: TextStyle(fontSize: 23, color: kSecondaryColor)
-                      ),
+                  ],
+                ),
+              ),
+              // SizedBox(height: 16),
+              Divider(thickness: 1, color: kPrimaryLightColor,),
+              applePayButton(),
+              samsungPayButton(),
+              // SizedBox(height: 16),
+              Divider(thickness: 1, color: kPrimaryLightColor,),
+              FlatButton(
+                onPressed: () {
+                  apmsPayPressed();
+                },
+                child: Text('Pay with Alternative payment methods',
+                    style: TextStyle(fontSize: 23, color: kSecondaryColor)
+                ),
+              ),
+              SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FlatButton(
+                    onPressed: () {Navigator.pop(context);},
+                    child: Text("Cancel",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
-                    SizedBox(height: 16),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        FlatButton(
-                          onPressed: () {Navigator.pop(context);},
-                          child: Text("Cancel",
-                                style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          color: kPrimaryColor,
-                          minWidth: 150,
-                          height: 50,
-                        ),
-                      ],
-                    )
-                  ]),
-        )
-
-      // ),
+                    color: kPrimaryColor,
+                    minWidth: 150,
+                    height: 50,
+                  ),
+                ],
+              ),
+              SizedBox(height: 30),
+              Center(
+                child: Container(
+                  width: size.width * 0.5,
+                  height: size.height * 0.3,
+                  child: Image.asset("assets/Logo/1024.png")
+                ),
+              ),
+            ]),
+        ),
       ),
     );
 

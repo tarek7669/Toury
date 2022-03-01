@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:project_toury/Pages/Splash/splash.dart';
 import 'package:project_toury/Pages/Login/login.dart';
 import 'package:project_toury/Pages/Signup/signup.dart';
+import 'Components/UserSharedPreferences.dart';
 import 'Feedback/feedback.dart';
 import 'Pages/Carousel_Start/Carousel.dart';
 import 'Pages/MuseumList/museumList.dart';
@@ -15,6 +16,9 @@ void main() async {
   Provider.debugCheckInvalidValueType = null;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  await UserSharedPreferences.init();
+
   runApp(Toury());
   // runApp(MultiProvider(providers: [
   //   ChangeNotifierProvider.value(value: AuthProvider.initialize())
