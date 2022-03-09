@@ -102,10 +102,10 @@ class _testPaymentsState extends State<testPayments> {
   }
 
   Future<PaymentSdkConfigurationDetails> generateConfig() async {
-    var billingDetails = BillingDetails("John Smith", "email@domain.com",
-        "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
-    var shippingDetails = ShippingDetails("John Smith", "email@domain.com",
-        "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
+    // var billingDetails = BillingDetails("John Smith", "email@domain.com",
+    //     "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
+    // var shippingDetails = ShippingDetails("John Smith", "email@domain.com",
+    //     "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
     List<PaymentSdkAPms> apms = [];
     apms.add(PaymentSdkAPms.VALU);
     var configuration = PaymentSdkConfigurationDetails(
@@ -121,8 +121,8 @@ class _testPaymentsState extends State<testPayments> {
         forceShippingInfo: false,
         currencyCode: finalCurrency,
         merchantCountryCode: "EG",
-        billingDetails: billingDetails,
-        shippingDetails: shippingDetails,
+        // billingDetails: billingDetails,
+        // shippingDetails: shippingDetails,
         alternativePaymentMethods: apms);
 
     var theme = IOSThemeConfigurations();
