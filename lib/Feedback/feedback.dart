@@ -18,7 +18,7 @@ class _FeedBackState extends State<FeedBack> {
         centerTitle: true,
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         title: Text(
           'Feedback',
           style: TextStyle(

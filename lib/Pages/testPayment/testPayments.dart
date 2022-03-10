@@ -102,10 +102,10 @@ class _testPaymentsState extends State<testPayments> {
   }
 
   Future<PaymentSdkConfigurationDetails> generateConfig() async {
-    // var billingDetails = BillingDetails("John Smith", "email@domain.com",
-    //     "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
-    // var shippingDetails = ShippingDetails("John Smith", "email@domain.com",
-    //     "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
+    var billingDetails = BillingDetails("John Smith", "email@domain.com",
+        "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
+    var shippingDetails = ShippingDetails("John Smith", "email@domain.com",
+        "+97311111111", "st. 12", "ae", "dubai", "dubai", "12345");
     List<PaymentSdkAPms> apms = [];
     apms.add(PaymentSdkAPms.VALU);
     var configuration = PaymentSdkConfigurationDetails(
@@ -121,8 +121,8 @@ class _testPaymentsState extends State<testPayments> {
         forceShippingInfo: false,
         currencyCode: finalCurrency,
         merchantCountryCode: "EG",
-        // billingDetails: billingDetails,
-        // shippingDetails: shippingDetails,
+        billingDetails: billingDetails,
+        shippingDetails: shippingDetails,
         alternativePaymentMethods: apms);
 
     var theme = IOSThemeConfigurations();
@@ -131,9 +131,10 @@ class _testPaymentsState extends State<testPayments> {
     theme.secondaryFontColor = "0x03989E";
     theme.secondaryColor = "0x03989E";
 
-    theme.logoImage = "assets/Logo/toury-cyan.jpeg";
-
+    theme.logoImage = "assets/Logo/Toury logo B (icon).png";
     configuration.iOSThemeConfigurations = theme;
+
+
 
     return configuration;
   }
@@ -306,8 +307,6 @@ class _testPaymentsState extends State<testPayments> {
     });
   }
 
-
-
   //Apple pay Button
   Widget applePayButton() {
     if (Platform.isIOS) {
@@ -366,61 +365,69 @@ class _testPaymentsState extends State<testPayments> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               // Text('Pick One To Proceed'),
-              SizedBox(height: 16),
-              FlatButton(
-                minWidth: size.width,
-                onPressed: () {
-                  payPressed();
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text('Pay with Card',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 16),
+                  FlatButton(
+                    minWidth: size.width,
+                    onPressed: () {
+                      payPressed();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Pay with Card',
+                            style: TextStyle(fontSize: 23, color: kSecondaryColor)
+                        ),
+                      ],
+                    ),
+                  ),
+                  // SizedBox(height: 16),
+                  Divider(thickness: 1, color: kPrimaryLightColor,),
+                  applePayButton(),
+                  samsungPayButton(),
+                  // SizedBox(height: 16),
+                  Divider(thickness: 1, color: kPrimaryLightColor,),
+                  FlatButton(
+                    onPressed: () {
+                      apmsPayPressed();
+                    },
+                    child: Text('Pay with Alternative payment methods',
                         style: TextStyle(fontSize: 23, color: kSecondaryColor)
                     ),
-                  ],
-                ),
-              ),
-              // SizedBox(height: 16),
-              Divider(thickness: 1, color: kPrimaryLightColor,),
-              applePayButton(),
-              samsungPayButton(),
-              // SizedBox(height: 16),
-              Divider(thickness: 1, color: kPrimaryLightColor,),
-              FlatButton(
-                onPressed: () {
-                  apmsPayPressed();
-                },
-                child: Text('Pay with Alternative payment methods',
-                    style: TextStyle(fontSize: 23, color: kSecondaryColor)
-                ),
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  FlatButton(
-                    onPressed: () {Navigator.pop(context);},
-                    child: Text("Cancel",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    color: kPrimaryColor,
-                    minWidth: 150,
-                    height: 50,
                   ),
+                  SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FlatButton(
+                        onPressed: () {Navigator.pop(context);},
+                        child: Text("Cancel",
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        color: kPrimaryColor,
+                        minWidth: 150,
+                        height: 50,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 30),
                 ],
               ),
-              SizedBox(height: 30),
-              Center(
-                child: Container(
-                  width: size.width * 0.5,
-                  height: size.height * 0.3,
-                  child: Image.asset("assets/Logo/1024.png")
-                ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                      width: size.width * 0.3,
+                      height: size.height * 0.3,
+                      child: Image.asset("assets/Logo/Toury logo (icon).png")
+                  ),
+                ],
               ),
             ]),
         ),

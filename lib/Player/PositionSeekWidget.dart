@@ -51,8 +51,10 @@ class _PositionSeekWidgetState extends State<PositionSeekWidget> {
               children: <Widget>[
                 Expanded(
                     child: Slider(
-                      inactiveColor: Colors.white10,
-                      activeColor: Colors.white,
+                      // inactiveColor: Colors.white10,
+                      // activeColor: Colors.white,
+                      activeColor: kPrimaryColor,
+                      inactiveColor: kSecondaryColor,
                       min: 0,
                       max: widget.duration.inMilliseconds.toDouble(),
                       value: percent * widget.duration.inMilliseconds.toDouble(),

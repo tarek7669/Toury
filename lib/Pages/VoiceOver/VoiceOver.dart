@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -269,11 +268,11 @@ class _VoiceOverState extends State<VoiceOver> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.arrow_back_ios, color: kPrimaryColor,),
+                        icon: Icon(Icons.arrow_back_ios, color: kTestColor,),
                         onPressed: () => Navigator.pop(context),
                       ),
                       IconButton(
-                        icon: Icon(CupertinoIcons.list_bullet, color: Colors.white),
+                        icon: Icon(CupertinoIcons.list_bullet, color: kTestColor),
                         onPressed: () {
                           _onTrackPressed();
                         },
@@ -308,7 +307,7 @@ class _VoiceOverState extends State<VoiceOver> {
                                 ? const SizedBox()
                                 : Text(
                                 (myAudio.metas.title).toString(),
-                                  style: TextStyle(color: kPrimaryLightColor, fontSize: 25, fontWeight: FontWeight.bold)
+                                  style: TextStyle(color: kTestColor, fontSize: 25, fontWeight: FontWeight.bold)
                                 );
                             // myAudio.metas.image!.path,
                             // height: size.height,
@@ -636,10 +635,10 @@ class _VoiceOverState extends State<VoiceOver> {
                 controller: ScrollController,
                 child: Container(
                   height: size.height * 0.6,
-                  child: _buildScriptBottomNavigationMenu(currentScript),
+                  child: _buildScriptBottomNavigationMenu(context, currentScript),
                   decoration: BoxDecoration(
                     // color: Theme.of(context).canvasColor,
-                    color: kPrimaryLightColor,
+                    color: kTestColor,
                     borderRadius: BorderRadius.only(
                       topLeft: const Radius.circular(20),
                       topRight: const Radius.circular(20),
@@ -815,7 +814,8 @@ class _VoiceOverState extends State<VoiceOver> {
   // }
 
 // BUILD THE BOTTOM SHEET FOR THE SCRIPT
-  Column _buildScriptBottomNavigationMenu(currentScript) {
+  Column _buildScriptBottomNavigationMenu(BuildContext context, currentScript) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         Icon(
@@ -826,6 +826,9 @@ class _VoiceOverState extends State<VoiceOver> {
         Expanded(
           child: Text(
             currentScript,
+            style: TextStyle(
+              fontSize: size.width * 0.07,
+            ),
           ),
         ),
       ],
@@ -840,7 +843,7 @@ class _VoiceOverState extends State<VoiceOver> {
             height: size.height * 0.9,
             color: Color(0xFF737373),
             child: Container(
-              child: _buildScriptBottomNavigationMenu(currentScript),
+              child: _buildScriptBottomNavigationMenu(context, currentScript),
               decoration: BoxDecoration(
                   color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.only(

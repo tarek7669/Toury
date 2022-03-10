@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
+import '../constants.dart';
 import 'asset_audio_player_icons.dart';
 
 class PlayingControls extends StatelessWidget {
@@ -109,12 +110,13 @@ class PlayingControls extends StatelessWidget {
           // padding: EdgeInsets.all(24),
           onPressed: onPlay,
           iconSize: 65,
-          color: Colors.white,
+          color: kTestColor,
           icon: Icon(
             isPlaying
                 ? Icons.pause_circle_filled_rounded
                 : Icons.play_circle_fill_rounded,
             size: 65,
+            // color: kSecondaryColor,
           ),
         ),
         // NeumorphicButton(

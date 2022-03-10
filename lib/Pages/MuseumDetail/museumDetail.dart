@@ -503,15 +503,15 @@ class _museumDetailState extends State<museumDetail>
                   leading: Builder(
                     builder: (BuildContext context) {
                       return IconButton(
-                        icon: Icon(Icons.arrow_back_ios, color: kPrimaryColor,),
+                        icon: Icon(Icons.arrow_back_ios, color: kTestColor,),
                         onPressed: () => Navigator.pop(context),
                         // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
                       );
                     },
                   ),
                   actions: [
-                    isLiked ? IconButton(icon: Icon(CupertinoIcons.heart_fill, color: kPrimaryColor,), onPressed: () async{ await manageLikeButton(context); },)
-                        : IconButton(icon: Icon(CupertinoIcons.heart, color: kPrimaryColor), onPressed: () async{ await manageLikeButton(context); },),
+                    isLiked ? IconButton(icon: Icon(CupertinoIcons.heart_fill, color: kTestColor,), onPressed: () async{ await manageLikeButton(context); },)
+                        : IconButton(icon: Icon(CupertinoIcons.heart, color: kUnselectedColor), onPressed: () async{ await manageLikeButton(context); },),
                   ],
 
                   pinned: true,

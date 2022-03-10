@@ -182,7 +182,7 @@ class _MuseumCardState extends State<MuseumCard> {
                           style: TextStyle(
                             fontWeight: FontWeight.w300,
                             fontSize: 24,
-                            color: kSecondaryColor,
+                            color: kPrimaryColor,
                           ),
                         ),
                       ),
@@ -209,6 +209,7 @@ class _MuseumCardState extends State<MuseumCard> {
                           subtitle,
                           style: TextStyle(
                             letterSpacing: 2.0,
+                            color: kSecondaryColor,
                           ),
                         ),
                       ],
