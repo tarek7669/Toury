@@ -15,6 +15,7 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return AnimatedSplashScreen(
       splash: Image.asset("assets/Logo/1024.png", height: size.height * 0.4, width: size.width * 0.4,),
+      // splash: Image.asset("assets/Design/60286.png", height: size.height * 0.4, width: size.width * 0.4,),
       animationDuration: Duration(milliseconds: 2000),
       splashIconSize: 400,
       backgroundColor: kPrimaryColor,

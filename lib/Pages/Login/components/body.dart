@@ -62,7 +62,7 @@ class _BodyState extends State<Body> {
                     'Please Fill These Info',
                     style: TextStyle(
                       fontSize: 15,
-                      color: kSecondaryColor,
+                      color: kPrimaryColor,
                     )
                 ),
               ],
@@ -93,6 +93,13 @@ class _BodyState extends State<Body> {
                   ),
                   SizedBox(height: 20),
                   IntlPhoneField(
+                    decoration: InputDecoration(
+                      hintText: 'Phone Number',
+                      border: UnderlineInputBorder(
+                        borderSide: BorderSide(color: kPrimaryColor),
+                      ),
+                    ),
+                    dropDownArrowColor: kPrimaryColor,
                     onChanged: (phone) {
                       setState(() {
                         controller: phone.completeNumber;

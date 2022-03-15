@@ -80,35 +80,44 @@ class _NavigationBarState extends State<NavigationBar> {
       ),
       bottomNavigationBar: Opacity(
         opacity: 1,
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          unselectedIconTheme: IconThemeData(color: Colors.blueGrey, size: 35, opacity: 0.8),
-          selectedIconTheme: IconThemeData(color: kPrimaryColor, size: 35, opacity: 1),
-          selectedItemColor: kPrimaryColor,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.headphones),
-              label: "Home",
-              // backgroundColor: Colors.red,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.play_arrow_solid),
-              label: "Library",
-              // backgroundColor: Colors.red,
-            ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.search),
-            //   label: "Search",
-            // ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: "Profile",
-              // backgroundColor: Colors.red,
-            ),
-          ],
-          currentIndex: _selectedIndex, //New
-          onTap: _onItemTapped,
+        child: Container(
+          // decoration: BoxDecoration(
+          //     gradient: LinearGradient(
+          //         begin: Alignment.centerLeft,
+          //         end: Alignment.centerRight,
+          //         colors: [Theme.of(context).canvasColor, kTestColor]
+          //     )
+          // ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            unselectedIconTheme: IconThemeData(color: Colors.blueGrey, size: 35, opacity: 0.8),
+            selectedIconTheme: IconThemeData(color: kPrimaryColor, size: 35, opacity: 1),
+            selectedItemColor: kPrimaryColor,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.headphones),
+                label: "Home",
+                // backgroundColor: Colors.red,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.play_arrow_solid),
+                label: "Library",
+                // backgroundColor: Colors.red,
+              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.search),
+              //   label: "Search",
+              // ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: "Profile",
+                // backgroundColor: Colors.red,
+              ),
+            ],
+            currentIndex: _selectedIndex, //New
+            onTap: _onItemTapped,
+          ),
         ),
       ),
     );

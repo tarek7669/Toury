@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_toury/Components/CustomAppBar.dart';
 import 'package:project_toury/Components/SpinKit.dart';
 import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Pages/MuseumList/museumList.dart';
@@ -623,83 +624,68 @@ class _PaidToursListState extends State<PaidToursList> with AutomaticKeepAliveCl
         :
     RefreshIndicator(
       child: Scaffold(
-       //  appBar: AppBar(
-       //    elevation: 10,
-       //    automaticallyImplyLeading: false,
-       //    backgroundColor: Colors.white,
-       //    title: Text(
-       //      'Toury',
-       //      style: GoogleFonts.iceland(
-       //        textStyle: TextStyle(
-       //          color: kPrimaryColor,
-       //          letterSpacing: 2.0,
-       //          fontSize: 35,
-       //        ),
-       //      ),
-       //    ),
-       //  ),
-       //  body: loading_data ? Center(child: SpinKitFadingCube(
-       //    color: kPrimaryColor,
-       //    size: 50.0,
-       //  ))
-       //   // : isConnected ?
-       // : Container(
-       //    child: PaidToursBody(ids: ids, names: names, locations: locations, thumbnails: thumbnails,
-       //      locationRoutes: locationRoutes, finalPrices: finalPrices, finalCurrency: finalCurrency,
-       //      descriptionRoutes: descriptionRoutes, descriptionSlideshow: descriptionSlideshow, voiceOvers: voiceOvers,
-       //      voiceOverTitles: voiceOverTitles, voiceOverSlideshow: voiceOverSlideshow,
-       //      scripts: scripts, languages: languages, is_empty: is_empty, isConnected: isConnected,
-       //        testThumbnails: testThumbnails,
-       //    ),
-       //  )
 
-          body: CustomScrollView(
-            slivers: [
-              SliverAppBar(
+          // body: CustomScrollView(
+          //   slivers: [
+          //     SliverAppBar(
+          //
+          //       pinned: false,
+          //       floating: true,
+          //       backgroundColor: Theme.of(context).canvasColor,
+          //       // expandedHeight: size.height * 0.4,
+          //       automaticallyImplyLeading: false,
+          //       // foregroundColor: Colors.red,
+          //       iconTheme: IconThemeData(color: kPrimaryColor),
+          //
+          //
+          //       flexibleSpace: FlexibleSpaceBar(
+          //         titlePadding: EdgeInsets.fromLTRB(13.0, 23.0, 3.0, 13.0),
+          //         centerTitle: false,
+          //         title: Text('Toury',
+          //             style: GoogleFonts.anton(
+          //               textStyle: TextStyle(
+          //                 color: kPrimaryColor,
+          //                 letterSpacing: 2.0,
+          //                 fontSize: 35,
+          //               ),
+          //             )),
+          //       ),
+          //     ),
+          //     SliverList(
+          //         delegate: SliverChildBuilderDelegate(
+          //               (_, int index) {
+          //             return loading_data ? Padding(
+          //               padding: EdgeInsets.only(top: size.height * 0.35),
+          //               child: DoubleBounce(),)
+          //             // : isConnected ?
+          //                 : Container(
+          //                 child: PaidToursBody(ids: ids, names: names, locations: locations, thumbnails: thumbnails,
+          //                 locationRoutes: locationRoutes, finalPrices: finalPrices, finalCurrency: finalCurrency,
+          //                 descriptionRoutes: descriptionRoutes, descriptionSlideshow: descriptionSlideshow, voiceOvers: voiceOvers,
+          //                 voiceOverTitles: voiceOverTitles, voiceOverSlideshow: voiceOverSlideshow,
+          //                 scripts: scripts, languages: languages, is_empty: is_empty, isConnected: isConnected,
+          //                 testThumbnails: testThumbnails,
+          //             ));
+          //           },
+          //           childCount: 1,)
+          //     ),
+          //   ],
+          // )
 
-                pinned: false,
-                floating: true,
-                backgroundColor: Theme.of(context).canvasColor,
-                // expandedHeight: size.height * 0.4,
-                automaticallyImplyLeading: false,
-                // foregroundColor: Colors.red,
-                iconTheme: IconThemeData(color: kPrimaryColor),
-
-
-                flexibleSpace: FlexibleSpaceBar(
-                  titlePadding: EdgeInsets.fromLTRB(13.0, 23.0, 3.0, 13.0),
-                  centerTitle: false,
-                  title: Text('Toury',
-                      style: GoogleFonts.anton(
-                        textStyle: TextStyle(
-                          color: kPrimaryColor,
-                          letterSpacing: 2.0,
-                          fontSize: 35,
-                        ),
-                      )),
-                ),
-              ),
-              SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                        (_, int index) {
-                      return loading_data ? Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.35),
-                        child: DoubleBounce(),)
-                      // : isConnected ?
-                          : Container(
-                          child: PaidToursBody(ids: ids, names: names, locations: locations, thumbnails: thumbnails,
-                          locationRoutes: locationRoutes, finalPrices: finalPrices, finalCurrency: finalCurrency,
-                          descriptionRoutes: descriptionRoutes, descriptionSlideshow: descriptionSlideshow, voiceOvers: voiceOvers,
-                          voiceOverTitles: voiceOverTitles, voiceOverSlideshow: voiceOverSlideshow,
-                          scripts: scripts, languages: languages, is_empty: is_empty, isConnected: isConnected,
-                          testThumbnails: testThumbnails,
-                      ));
-                    },
-                    childCount: 1,)
-              ),
-            ],
-          )
-
+        body: CustomAppBar(
+          widget: loading_data ? Padding(
+            padding: EdgeInsets.only(top: size.height * 0.35),
+            child: DoubleBounce(),)
+          // : isConnected ?
+              : Container(
+                child: PaidToursBody(ids: ids, names: names, locations: locations, thumbnails: thumbnails,
+                locationRoutes: locationRoutes, finalPrices: finalPrices, finalCurrency: finalCurrency,
+                descriptionRoutes: descriptionRoutes, descriptionSlideshow: descriptionSlideshow, voiceOvers: voiceOvers,
+                voiceOverTitles: voiceOverTitles, voiceOverSlideshow: voiceOverSlideshow,
+                scripts: scripts, languages: languages, is_empty: is_empty, isConnected: isConnected,
+                testThumbnails: testThumbnails,
+          ))
+        ),
 
         // Center(
         //         child: Column(

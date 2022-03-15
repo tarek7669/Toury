@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_toury/Components/GradientText.dart';
 import 'package:project_toury/Components/bottomNavigationBar.dart';
 import 'package:project_toury/Models/user_model.dart';
 import 'package:project_toury/Pages/Carousel_Start/Carousel.dart';
@@ -456,7 +457,22 @@ class _MuseumListState extends State<MuseumList>
   }
 
   Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = Text('Toury',
+  // Widget customSearchBar = Text('Toury',
+  //     style: GoogleFonts.anton(
+  //       textStyle: TextStyle(
+  //         color: kPrimaryColor,
+  //         letterSpacing: 2.0,
+  //         fontSize: 35,
+  //       ),
+  //     ));
+
+  Widget customSearchBar = GradientText(
+      'Toury',
+      gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [kPrimaryColor, kTestColor]
+      ),
       style: GoogleFonts.anton(
         textStyle: TextStyle(
           color: kPrimaryColor,
@@ -478,6 +494,7 @@ class _MuseumListState extends State<MuseumList>
               pinned: false,
               floating: true,
               backgroundColor: Theme.of(context).canvasColor,
+
               // expandedHeight: size.height * 0.4,
               automaticallyImplyLeading: false,
               // foregroundColor: Colors.red,
@@ -517,14 +534,28 @@ class _MuseumListState extends State<MuseumList>
                         );
                       } else {
                         customIcon = const Icon(Icons.search);
-                        customSearchBar = Text('Toury',
+                        // customSearchBar = Text('Toury',
+                        //     style: GoogleFonts.anton(
+                        //       textStyle: TextStyle(
+                        //         color: kPrimaryColor,
+                        //         letterSpacing: 2.0,
+                        //         fontSize: 35,
+                        //       ),
+                        //     ));
+                        customSearchBar = GradientText(
+                          'Toury',
+                            gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [kPrimaryColor, kTestColor]
+                            ),
                             style: GoogleFonts.anton(
                               textStyle: TextStyle(
                                 color: kPrimaryColor,
                                 letterSpacing: 2.0,
                                 fontSize: 35,
-                              ),
-                            ));
+                            ),
+                        ));
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NavigationBar()));
                         exit = true;
                       }
@@ -535,10 +566,19 @@ class _MuseumListState extends State<MuseumList>
               ],
 
 
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.fromLTRB(13.0, 23.0, 3.0, 13.0),
-                centerTitle: false,
-                title: customSearchBar,
+              flexibleSpace: Container(
+                // decoration: BoxDecoration(
+                //     gradient: LinearGradient(
+                //         begin: Alignment.topLeft,
+                //         end: Alignment.bottomRight,
+                //         colors: [kTestColor, Theme.of(context).canvasColor]
+                //     )
+                // ),
+                child: FlexibleSpaceBar(
+                  titlePadding: EdgeInsets.fromLTRB(13.0, 23.0, 3.0, 13.0),
+                  centerTitle: false,
+                  title: customSearchBar,
+                ),
               ),
             ),
             SliverList(

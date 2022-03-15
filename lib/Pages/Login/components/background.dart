@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../constants.dart';
+
 class Background extends StatelessWidget {
   final Widget child;
   const Background({
@@ -17,7 +19,7 @@ class Background extends StatelessWidget {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Colors.white, Color(0xFF03989E)]
+              colors: [kPrimaryColor, kTestColor]
           )
       ),
       child: Stack(
@@ -29,6 +31,7 @@ class Background extends StatelessWidget {
             child: Image.network(
               "https://firebasestorage.googleapis.com/v0/b/toury-1727-tn.appspot.com/o/Images%2Fmain_top.png?alt=media&token=266de0ed-b4a6-415c-bbd5-a6ce2d6b7ca0",
               width: size.width * 0.35,
+              color: kPrimaryColor,
             ),
           ),
           Positioned(
@@ -37,9 +40,10 @@ class Background extends StatelessWidget {
             child: Image.network(
               "https://firebasestorage.googleapis.com/v0/b/toury-1727-tn.appspot.com/o/Images%2Flogin_bottom.png?alt=media&token=69d7c715-cd38-43f5-8c37-d57d197ab78b",
               width: size.width * 0.4,
+              color: kSecondaryColor,
             ),
           ),
-          child,
+          SingleChildScrollView(child: child),
         ],
       ),
     );
